@@ -30,22 +30,31 @@ export default function App() {
   ];
 
   const [panelActiveIndex, setPanelActiveIndex] = useState(1);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [appearance, setAppearance] = useState({
+    isDarkMode: false,
+    fontSize: '120%'
+  });
 
   const accordionPanels = reactDocs.map(doc => (
     <AccordionPanel
       title={doc.title}
       isExpanded={panelActiveIndex === doc.id}
       onActivate={() => setPanelActiveIndex(doc.id)}
-      darkMode={isDarkMode}
+      darkMode={appearance.isDarkMode}
     >
       {doc.body}
     </AccordionPanel>
   ));
 
   return (
-    <div className="App" style={{ backgroundColor: (isDarkMode ? 'black' : 'white') }}>
-      <DarkModeSwitcher onSwitchDarkMode={setIsDarkMode} />
+    <div
+      className="App"
+      style={{
+        backgroundColor: (appearance.isDarkMode ? 'black' : 'white'),
+        fontSize: appearance.fontSize
+      }}>
+
+      <DarkModeSwitcher onSwitchDarkMode={() => console.log("TODO")} />
 
       {accordionPanels}
     </div>
