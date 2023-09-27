@@ -54,7 +54,12 @@ export default function App() {
         fontSize: appearance.fontSize
       }}>
 
-      <DarkModeSwitcher onSwitchDarkMode={() => console.log("TODO")} />
+      <DarkModeSwitcher onSwitchDarkMode={() => setAppearance(
+        {
+          ...appearance,
+          isDarkMode: !appearance.isDarkMode
+        }
+      )} />
 
       {accordionPanels}
     </div>
